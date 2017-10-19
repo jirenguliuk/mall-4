@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+  <meta charset="utf-8">
+  <title>MALL</title>
+  <style>
+      * {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      text-decoration: none;
+      
+    }
+    body {
+      padding: 50px;
+    }
+    #tab {
+      width: 600px;
+      height: 300px;
+      border: 1px solid black;
+      position: relative;
+    }
+    #tabs li {
+      display: inline-block;
+      text-align: center;
+      float: left;
+      width: 33.2%;
+      height: 40px;
+      line-height: 40px;
+      border-right: 1px solid black;
+      border-bottom: 1px solid black;
+      cursor: pointer;
+    }
+    #tabs li:last-child {
+      border-right: none;
+    }
+    
+    #tabs .active {
+      background-color: grey;
+    }
+    #panels {
+      width: 1800px;
+      height: 258px;
+      position: absolute;
+      left: 0;
+    }
+    #panels .panel {
+      display: inline-block;
+      float: left;
+      width: 600px;
+      height: 258px;
+    }
+    #panels .panel:nth-child(1){
+      background-color: red;
+    }
+    #panels .panel:nth-child(2){
+      background-color: yellow;
+    }
+    #panels .panel:nth-child(3){
+      background-color: blue;
+    }
+    #panels .active {
+      display: block;
+    }
+    .wrap {
+      width: 600px;
+      height: 258px;
+      position: absolute;
+      top: 40px;
+      left: 0;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+<div id="tab">
+  <ul id="tabs">
+    <li class="active">tab1</li>
+    <li>tab2</li>
+    <li>tab3</li>
+  </ul>
+  <div class="wrap">
+    <ul id="panels">
+      <li class="panel">内容1</li>
+      <li class="panel">内容2</li>
+      <li class="panel">内容3</li>
+    </ul>
+  </div>
+</div>
+<script>
+      $('#tabs li').on('click',function(){
+    let $this = $(this)
+    let index = $this.index()
+    let panelWidth =$('#tab .wrap').width()
+    $this.addClass('active')
+         .siblings().removeClass('active')
+    $this.parents("#tab")
+         .find('#panels')
+         .animate({left: -panelWidth*index})
+  })
+</script>
+</body>
+</html>
